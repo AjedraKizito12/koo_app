@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'bottom_sheet.dart';
+
 class EntertainmentScreen extends StatefulWidget {
   const EntertainmentScreen({Key? key}) : super(key: key);
 
@@ -51,8 +53,18 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        tooltip: 'Increment',
+        onPressed: (){
+          showModalBottomSheet(context: context, builder: (BuildContext context) {
+            return const BottomSheetScreen();
+          },
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20)
+              ),
+            ),
+          );
+        },
+        tooltip: 'bottomSheet',
         child: const Icon(Icons.add),
       ),
     );
