@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 
 import 'EntertainmentScreen.dart';
 import 'MyProfileScreen.dart';
 import 'NotificationScreen.dart';
 import 'SearchScreen.dart';
-
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});

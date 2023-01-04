@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:koo_app/create_koo.dart';
 
 import 'bottom_sheet.dart';
 
@@ -16,9 +16,31 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Koo"),
-        centerTitle: true,
-        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              "Koo",
+              style: TextStyle(
+                  // color: Color(0xFFF49B15),
+                  ),
+            ),
+            InkWell(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CreateKoo(),
+                ),
+              ),
+              child: const Icon(
+                Icons.message,
+                // color: Color(0xFF000000),
+              ),
+            )
+          ],
+        ),
+        // centerTitle: true,
+        // elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -27,8 +49,20 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
             children: [
               Column(
                 children: const [
-                  Text("Welcome to Entertainment"),
-                  Text("Here you can view all the entertaining Koos"),
+                  Text(
+                    "Welcome to Entertainment",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Here you can view all the entertaining Koos",
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
@@ -53,14 +87,14 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          showModalBottomSheet(context: context, builder: (BuildContext context) {
-            return const BottomSheetScreen();
-          },
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context) {
+              return const BottomSheetScreen();
+            },
             shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(20)
-              ),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
           );
         },
@@ -100,10 +134,16 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                 ),
               ],
             ),
-            const Text("20h ago"),
+            const Text(
+              "20h ago",
+              style: TextStyle(
+                // color: const Color(0x0f282c3f).withOpacity(.6),
+                fontSize: 10,
+              ),
+            ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
         Text(message),
         const SizedBox(height: 10),
         Column(
@@ -112,7 +152,6 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                 ? Container(
                     height: 200,
                     decoration: BoxDecoration(
-                      color: Colors.blue,
                       image: DecorationImage(
                         image: AssetImage(imgSrc),
                         fit: BoxFit.fill,
@@ -154,6 +193,10 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
             )
           ],
         ),
+        const Divider(
+          thickness: 2,
+          height: 20,
+        ),
       ],
     );
   }
@@ -165,8 +208,8 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
   }) {
     return TextButton.icon(
         style: TextButton.styleFrom(
-          foregroundColor: Colors.grey,
-        ),
+            // foregroundColor: const Color(0xFF282C3F),
+            ),
         onPressed: onPressed,
         icon: icon,
         label: Text(label));
