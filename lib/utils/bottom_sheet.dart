@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:koo_app/screens/EntertainmentScreen.dart';
 import 'package:koo_app/feeds/home.dart';
 import 'package:koo_app/feeds/news.dart';
 import 'package:koo_app/feeds/sports.dart';
-import 'package:koo_app/utils/theme.dart';
+import 'package:koo_app/utils/app_colors.dart';
 
 class BottomSheetScreen extends StatefulWidget {
   const BottomSheetScreen({Key? key}) : super(key: key);

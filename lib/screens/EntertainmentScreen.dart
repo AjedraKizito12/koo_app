@@ -44,16 +44,16 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                 )
               ],
             ),
-            actions: [
-              IconButton(
-                  icon: Icon(themeNotifier.isDark
-                      ? Icons.nightlight_round
-                      : Icons.wb_sunny),
-                  onPressed: () {
-                    themeNotifier.isDark
-                        ? themeNotifier.isDark = false
-                        : themeNotifier.isDark = true;
-                  })
+            actions: const [
+              // IconButton(
+              //     icon: Icon(themeNotifier.isDark
+              //         ? Icons.nightlight_round
+              //         : Icons.wb_sunny),
+              //     onPressed: () {
+              //       themeNotifier.isDark
+              //           ? themeNotifier.isDark = false
+              //           : themeNotifier.isDark = true;
+              //     })
             ],
           ),
           body: Padding(

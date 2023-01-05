@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:koo_app/base_screen.dart';
 import 'package:koo_app/models/model_theme.dart';
-import 'package:koo_app/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    MyApp(appTheme: AppTheme()),
+    MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.appTheme});
+  const MyApp({super.key, });
 
-  final AppTheme appTheme;
+  
 
   // This widget is the root of your application.
   @override
@@ -25,8 +24,10 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Koo App',
             theme: themeNotifier.isDark
-                ? AppTheme().darkBase
-                : AppTheme().lightBase,
+                ? ThemeData.light(
+                  
+                )
+                : ThemeData.dark(),
             debugShowCheckedModeBanner: false,
             home: const BaseScreen(),
           );

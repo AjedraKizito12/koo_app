@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:koo_app/utils/theme.dart';
+import 'package:koo_app/utils/app_colors.dart';
 
 class CreateKoo extends StatefulWidget {
   const CreateKoo({Key? key}) : super(key: key);
