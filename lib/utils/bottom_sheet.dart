@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:koo_app/theme.dart';
+import 'package:koo_app/screens/EntertainmentScreen.dart';
+import 'package:koo_app/feeds/home.dart';
+import 'package:koo_app/feeds/news.dart';
+import 'package:koo_app/feeds/sports.dart';
+import 'package:koo_app/utils/theme.dart';
 
 class BottomSheetScreen extends StatefulWidget {
   const BottomSheetScreen({Key? key}) : super(key: key);
@@ -16,14 +20,8 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
     const Icon(Icons.sports_football),
     const Icon(Icons.video_file),
   ];
-  final List _functions = [
-    () {},
-    () {},
-    () {},
-    () {},
-  ];
 
-  int currentIndex = 0;
+  int currentIndex = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -38,26 +36,6 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
             style: TextStyle(fontSize: 20),
           ),
           const SizedBox(height: 20),
-          // bottomSheetOptions(
-          //   title: "Home",
-          //   icon: const Icon(Icons.home),
-          //   onPressed: () {},
-          // ),
-          // bottomSheetOptions(
-          //   title: "News",
-          //   icon: const Icon(Icons.newspaper),
-          //   onPressed: () {},
-          // ),
-          // bottomSheetOptions(
-          //   title: "Sports",
-          //   icon: const Icon(Icons.sports_football),
-          //   onPressed: () {},
-          // ),
-          // bottomSheetOptions(
-          //   title: "Entertainment",
-          //   icon: const Icon(Icons.video_file),
-          //   onPressed: () {},
-          // ),
           Column(
             children: List.generate(
               _activities.length,
@@ -82,16 +60,66 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                       _activities[index],
                       style: const TextStyle(fontSize: 16),
                     ),
-                    onTap: _functions[index],
-                    trailing: const CircleAvatar(
-                      backgroundColor: AppColors.success1,
-                      foregroundColor: AppColors.shade3,
-                      radius: 15,
-                      child: Icon(
-                        Icons.check,
-                        size: 15,
-                      ),
-                    ),
+                    onTap: () {
+                      setState(() {
+                        currentIndex = index;
+
+                        if (_activities[index] == "Home") {
+                          Future.delayed(
+                            const Duration(seconds: 1),
+                            () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomeScreen(),
+                                )),
+                          );
+
+                          // Navigator.pop(context);
+                        } else if (_activities[index] == "News") {
+                          Future.delayed(
+                            const Duration(seconds: 1),
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const NewsScreen(),
+                              ),
+                            ),
+                          );
+                        } else if (_activities[index] == "Sports") {
+                          Future.delayed(
+                            const Duration(seconds: 1),
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SportsScreen(),
+                              ),
+                            ),
+                          );
+                        } else if (_activities[index] == "Entertainment") {
+                          Future.delayed(
+                            const Duration(seconds: 1),
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const EntertainmentScreen(),
+                              ),
+                            ),
+                          );
+                        }
+                      });
+                    },
+                    trailing: currentIndex == index
+                        ? const CircleAvatar(
+                            backgroundColor: AppColors.success1,
+                            foregroundColor: AppColors.shade3,
+                            radius: 15,
+                            child: Icon(
+                              Icons.check,
+                              size: 15,
+                            ),
+                          )
+                        : const SizedBox(),
                   ),
                 ),
               ),
