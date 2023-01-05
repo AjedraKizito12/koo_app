@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:koo_app/screens/EntertainmentScreen.dart';
 import 'package:koo_app/feeds/home.dart';
 import 'package:koo_app/feeds/news.dart';
@@ -15,10 +16,16 @@ class BottomSheetScreen extends StatefulWidget {
 class _BottomSheetScreenState extends State<BottomSheetScreen> {
   final List _activities = ["Home", "News", "Sports", "Entertainment"];
   final List _icons = [
-    const Icon(Icons.home),
-    const Icon(Icons.newspaper),
+    const Icon(
+      Ionicons.home_outline,
+    ),
+    const Icon(
+      Ionicons.newspaper_outline,
+    ),
+    const Icon(
+      Ionicons.tennisball_outline,
+    ),
     const Icon(Icons.sports_football),
-    const Icon(Icons.video_file),
   ];
 
   int currentIndex = 3;
@@ -96,16 +103,8 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                             ),
                           );
                         } else if (_activities[index] == "Entertainment") {
-                          Future.delayed(
-                            const Duration(seconds: 1),
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const EntertainmentScreen(),
-                              ),
-                            ),
-                          );
+                          Future.delayed(const Duration(seconds: 1),
+                              () => Navigator.pop(context));
                         }
                       });
                     },

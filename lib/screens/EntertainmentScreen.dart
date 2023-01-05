@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:koo_app/screens/create_koo.dart';
 import 'package:koo_app/models/model_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../utils/bottom_sheet.dart';
 
@@ -134,9 +135,7 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  child: ImageIcon(AssetImage(userImage)),
-                ),
+                buildProfileImage(userImage),
                 const SizedBox(width: 5),
                 Column(
                   children: [
@@ -158,54 +157,73 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
           ],
         ),
         const SizedBox(height: 20),
-        Text(
-          message,
-          textAlign: TextAlign.justify,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            message,
+            textAlign: TextAlign.justify,
+          ),
         ),
         const SizedBox(height: 10),
-        Column(
-          children: [
-            imgSrc.length > 1
-                ? Container(
-                    height: 200,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(imgSrc),
-                        fit: BoxFit.fill,
-                        alignment: Alignment.center,
-                        scale: .8,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            children: [
+              imgSrc.length > 1
+                  ? Container(
+                      height: 200,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(imgSrc),
+                          fit: BoxFit.fill,
+                          alignment: Alignment.center,
+                          scale: .8,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      borderRadius: BorderRadius.circular(10),
+                    )
+                  : Container(),
+              Wrap(
+                spacing: 20,
+                children: [
+                  interactions(
+                    label: '200',
+                    icon: const Icon(
+                      Ionicons.share_social_outline,
+                      color: Colors.grey,
+                      size: 20,
                     ),
-                  )
-                : Container(),
-            Wrap(
-              spacing: 20,
-              children: [
-                interactions(
-                  label: '200',
-                  icon: const Icon(Icons.share),
-                  onPressed: () {},
-                ),
-                interactions(
-                  label: '200',
-                  icon: const Icon(Icons.message),
-                  onPressed: () {},
-                ),
-                interactions(
-                  label: '200',
-                  icon: const Icon(Icons.heart_broken),
-                  onPressed: () {},
-                ),
-                interactions(
-                  label: '200',
-                  icon: const Icon(Icons.link),
-                  onPressed: () {},
-                ),
-              ],
-            )
-          ],
+                    onPressed: () {},
+                  ),
+                  interactions(
+                    label: '200',
+                    icon: const Icon(
+                      Ionicons.chatbox_outline,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {},
+                  ),
+                  interactions(
+                    label: '200',
+                    icon: const Icon(
+                      Ionicons.heart_outline,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {},
+                  ),
+                  interactions(
+                    label: '200',
+                    icon: const Icon(
+                      Ionicons.repeat_outline,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
         const Divider(
           thickness: 2,
@@ -222,11 +240,17 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
   }) {
     return TextButton.icon(
       style: TextButton.styleFrom(
-          // foregroundColor: const Color(0xFF282C3F),
-          ),
+        foregroundColor: Colors.grey,
+      ),
       onPressed: onPressed,
       icon: icon,
       label: Text(label),
     );
   }
+
+  Widget buildProfileImage(String imgSrc) => CircleAvatar(
+        radius: 20,
+        backgroundColor: Colors.grey.shade800,
+        backgroundImage: AssetImage(imgSrc),
+      );
 }
