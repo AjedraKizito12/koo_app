@@ -26,12 +26,12 @@ abstract class AppColors {
 
 abstract class _LightColors {
   static const background = Color(0xFFFFFFFF);
-  // static const card = AppColors.cardLight;
+  static const card = AppColors.cardLight;
 }
 
 abstract class _DarkColors {
   static const background = Color(0xFF000000);
-  // static const card = AppColors.cardDark;
+  static const card = AppColors.cardDark;
 }
 
 /// Reference to the application theme.
@@ -65,6 +65,9 @@ class AppTheme {
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
         scaffoldBackgroundColor: _LightColors.background,
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: AppColors.primaryYellow,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(backgroundColor: AppColors.text2),
         ),

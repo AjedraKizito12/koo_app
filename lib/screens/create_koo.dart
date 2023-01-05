@@ -24,7 +24,10 @@ class _CreateKooState extends State<CreateKoo> {
                   children: [
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.close),
+                      child: const Icon(
+                        Icons.close,
+                        size: 30,
+                      ),
                     ),
                     ElevatedButton(
                       onPressed: () {},

@@ -25,14 +25,8 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Koo App',
             theme: themeNotifier.isDark
-                ? ThemeData(
-                    brightness: Brightness.dark,
-                  )
-                : ThemeData(
-                    brightness: Brightness.light,
-                    primaryColor: Colors.yellow,
-                    primarySwatch: Colors.yellow,
-                  ),
+                ? AppTheme().darkBase
+                : AppTheme().lightBase,
             debugShowCheckedModeBanner: false,
             home: const BaseScreen(),
           );
