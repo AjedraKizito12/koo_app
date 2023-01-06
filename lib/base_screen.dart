@@ -1,11 +1,12 @@
-
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:koo_app/models/model_theme.dart';
+import 'package:provider/provider.dart';
 
-import 'EntertainmentScreen.dart';
-import 'MyProfileScreen.dart';
-import 'NotificationScreen.dart';
-import 'SearchScreen.dart';
-
+import 'screens/EntertainmentScreen.dart';
+import 'screens/MyProfileScreen.dart';
+import 'screens/NotificationScreen.dart';
+import 'screens/SearchScreen.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -38,36 +39,55 @@ class _BaseScreenState extends State<BaseScreen> {
       onWillPop: () async {
         return false;
       },
-      child: Scaffold(
-        backgroundColor: const Color(0xFFF7FFF0),
-        key: _scaffoldKey,
-        body: _children[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: onTapped,
-          selectedItemColor: const Color(0xFFE69C1C),
-          unselectedItemColor: Colors.black54,
-          currentIndex: _currentIndex,
-          items: const [
-            BottomNavigationBarItem(
-                activeIcon: Icon(Icons.music_note),
-                icon: Icon(Icons.music_off),
-                label: 'Entertainment'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search_off),
-                activeIcon: Icon(Icons.search),
-                label: 'Search'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.notifications),
-                activeIcon: Icon(Icons.notifications_active),
-                label: 'Notif'),
-            BottomNavigationBarItem(
-              activeIcon: Icon(Icons.person),
-              icon: Icon(Icons.person_off),
-              label: 'Profile',
-            ),
-          ],
-        ),
-      ),
+      child: Consumer<ModelTheme>(
+          builder: (context, ModelTheme themeNotifier, child) {
+        return Scaffold(
+          backgroundColor: const Color(0xFFF7FFF0),
+          key: _scaffoldKey,
+          body: _children[_currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            showUnselectedLabels: true,
+            onTap: onTapped,
+            selectedItemColor: const Color(0xFFE69C1C),
+            unselectedItemColor: Colors.black54,
+            currentIndex: _currentIndex,
+            iconSize: 30,
+            enableFeedback: false,
+            items: const [
+              BottomNavigationBarItem(
+                  activeIcon: Icon(
+                    Ionicons.film_outline,
+                  ),
+                  icon: Icon(
+                    Ionicons.film_outline,
+                  ),
+                  label: 'Entertainment'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.search_off),
+                  activeIcon: Icon(Icons.search),
+                  label: 'Search'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Ionicons.notifications_outline,
+                  ),
+                  activeIcon: Icon(
+                    Ionicons.notifications_outline,
+                  ),
+                  label: 'Notifications'),
+              BottomNavigationBarItem(
+                activeIcon: Icon(
+                  Ionicons.person_outline,
+                ),
+                icon: Icon(
+                  Ionicons.person_outline,
+                ),
+                label: 'Profile',
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
