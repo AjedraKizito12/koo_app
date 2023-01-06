@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:koo_app/mytheme_preference.dart';
+import 'package:koo_app/theme/mytheme_preference.dart';
 
 
 class ModelTheme extends ChangeNotifier {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:koo_app/models/model_theme.dart';
+import 'package:koo_app/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/EntertainmentScreen.dart';
@@ -39,8 +40,8 @@ class _BaseScreenState extends State<BaseScreen> {
       onWillPop: () async {
         return false;
       },
-      child: Consumer<ModelTheme>(
-          builder: (context, ModelTheme themeNotifier, child) {
+      child: Consumer<ThemeProvider>(
+          builder: (context, ThemeProvider themeNotifier, child) {
         return Scaffold(
           backgroundColor: const Color(0xFFF7FFF0),
           key: _scaffoldKey,

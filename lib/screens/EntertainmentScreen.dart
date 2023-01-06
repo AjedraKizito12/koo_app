@@ -4,6 +4,8 @@ import 'package:koo_app/models/model_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../theme/theme.dart';
+import '../utils/app_colors.dart';
 import '../utils/bottom_sheet.dart';
 
 class EntertainmentScreen extends StatefulWidget {
@@ -17,17 +19,16 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
   bool hasImage = false;
   @override
   Widget build(BuildContext context) {
-    return Consumer<ModelTheme>(
-      builder: (context, ModelTheme themeNotifier, child) {
+    return Consumer<ThemeProvider>(
+      builder: (context, ThemeProvider themeNotifier, child) {
         return Scaffold(
           appBar: AppBar(
-            elevation: 0,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   "Koo",
-                  style: TextStyle(),
+                  style: TextStyle(color: AppColors.primaryYellow),
                 ),
                 InkWell(
                   onTap: () {
@@ -39,21 +40,20 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                     );
                   },
                   child: const Icon(
-                    Icons.message,
+                    Ionicons.chatbox_outline,
                   ),
                 )
               ],
             ),
-            actions: const [
-              // IconButton(
-              //     icon: Icon(themeNotifier.isDark
-              //         ? Icons.nightlight_round
-              //         : Icons.wb_sunny),
-              //     onPressed: () {
-              //       themeNotifier.isDark
-              //           ? themeNotifier.isDark = false
-              //           : themeNotifier.isDark = true;
-              //     })
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.brightness_6),
+                onPressed: () {
+                  ThemeProvider themeProvider =
+                      Provider.of<ThemeProvider>(context, listen: false);
+                  themeProvider.swapTheme();
+                },
+              )
             ],
           ),
           body: Padding(
@@ -138,8 +138,19 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                 buildProfileImage(userImage),
                 const SizedBox(width: 5),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(userName),
+                    Row(
+                      children: [
+                        Text(userName),
+                        const SizedBox(width: 5),
+                        const Icon(
+                          Ionicons.checkmark_circle,
+                          color: Colors.yellow,
+                          size: 20,
+                        ),
+                      ],
+                    ),
                     Text(
                       tagName,
                       style: const TextStyle(color: Colors.grey),
@@ -185,13 +196,13 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                     )
                   : Container(),
               Wrap(
-                spacing: 20,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 10,
                 children: [
                   interactions(
                     label: '200',
                     icon: const Icon(
                       Ionicons.share_social_outline,
-                      color: Colors.grey,
                       size: 20,
                     ),
                     onPressed: () {},
@@ -200,7 +211,7 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                     label: '200',
                     icon: const Icon(
                       Ionicons.chatbox_outline,
-                      color: Colors.grey,
+                      size: 20,
                     ),
                     onPressed: () {},
                   ),
@@ -208,7 +219,7 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                     label: '200',
                     icon: const Icon(
                       Ionicons.heart_outline,
-                      color: Colors.grey,
+                      size: 20,
                     ),
                     onPressed: () {},
                   ),
@@ -216,7 +227,7 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                     label: '200',
                     icon: const Icon(
                       Ionicons.repeat_outline,
-                      color: Colors.grey,
+                      size: 20,
                     ),
                     onPressed: () {},
                   ),
@@ -239,9 +250,6 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
     required Function() onPressed,
   }) {
     return TextButton.icon(
-      style: TextButton.styleFrom(
-        foregroundColor: Colors.grey,
-      ),
       onPressed: onPressed,
       icon: icon,
       label: Text(label),
