@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:koo_app/models/model_theme.dart';
 import 'package:koo_app/theme/theme.dart';
 import 'package:provider/provider.dart';
 

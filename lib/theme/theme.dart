@@ -22,7 +22,7 @@ class ThemeProvider extends ChangeNotifier {
 
   ThemeData dark = ThemeData.dark().copyWith(
     appBarTheme:const AppBarTheme(
-      iconTheme: const IconThemeData(color: AppColors.shade3),
+      iconTheme:  IconThemeData(color: AppColors.shade3),
       backgroundColor: AppColors.primaryBlack,
       elevation: 0,
       foregroundColor: AppColors.primaryBlack,
