@@ -17,6 +17,7 @@ class BaseScreen extends StatefulWidget {
 
 class _BaseScreenState extends State<BaseScreen> {
   int _currentIndex = 0;
+  final PageController _pageController = PageController(initialPage: 0);
 
   final List<Widget> _children = [
     const EntertainmentScreen(),
@@ -26,18 +27,6 @@ class _BaseScreenState extends State<BaseScreen> {
   ];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void onTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  final PageController _controller = PageController();
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +40,29 @@ class _BaseScreenState extends State<BaseScreen> {
           backgroundColor: const Color(0xFFF7FFF0),
           key: _scaffoldKey,
           body: PageView.builder(
-              itemBuilder: (context, index) {
-                return _children[_currentIndex];
-              },
-              controller: _controller),
+            itemBuilder: (context, index) {
+              return _children[_currentIndex];
+            },
+            onPageChanged: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+            controller: _pageController,
+          ),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             showUnselectedLabels: true,
-            onTap: onTapped,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+                _pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              });
+            },
             selectedItemColor: const Color(0xFFE69C1C),
             unselectedItemColor: Colors.black54,
             currentIndex: _currentIndex,
