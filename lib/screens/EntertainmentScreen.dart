@@ -60,8 +60,8 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Column(
-                    children: const [
+                  const Column(
+                    children: [
                       Text(
                         "Welcome to Entertainment",
                         style: TextStyle(
@@ -79,22 +79,30 @@ class _EntertainmentScreenState extends State<EntertainmentScreen> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  chat(
-                    userName: 'Kanconst agana Ranaut',
-                    tagName: '@kanconstaganaranaut',
-                    message:
-                        'Do you know Raj Kapoor ji and Dilip Kumar ji were best friends? \nLast of that generation Super stars is also gone …. \nRIP Dilip Kumar ji 🙏 ',
-                    imgSrc: 'assets/images/img.png',
-                    userImage: 'assets/images/profile1.png',
-                  ),
-                  const SizedBox(height: 10),
-                  chat(
-                      userName: 'Mrunal Thakur',
-                      tagName: '@roykapurfilms',
-                      message:
-                          'Happiest Birthday to the real Chief of our Pippa Family! \nCant wait to begin!',
-                      imgSrc: '',
-                      userImage: 'assets/images/profile2.png'),
+                  ...List.generate(
+                    5,
+                    (index) => Column(
+                      children: [
+                        chat(
+                          userName: 'Kanconst agana Ranaut',
+                          tagName: '@kanconstaganaranaut',
+                          message:
+                              'Do you know Raj Kapoor ji and Dilip Kumar ji were best friends? \nLast of that generation Super stars is also gone …. \nRIP Dilip Kumar ji 🙏 ',
+                          imgSrc: 'assets/images/img.png',
+                          userImage: 'assets/images/profile1.png',
+                        ),
+                        const SizedBox(height: 10),
+                        chat(
+                          userName: 'Mrunal Thakur',
+                          tagName: '@roykapurfilms',
+                          message:
+                              'Happiest Birthday to the real Chief of our Pippa Family! \nCant wait to begin!',
+                          imgSrc: '',
+                          userImage: 'assets/images/profile2.png',
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

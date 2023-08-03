@@ -33,6 +33,12 @@ class _BaseScreenState extends State<BaseScreen> {
     });
   }
 
+  final PageController _controller = PageController();
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -44,7 +50,11 @@ class _BaseScreenState extends State<BaseScreen> {
         return Scaffold(
           backgroundColor: const Color(0xFFF7FFF0),
           key: _scaffoldKey,
-          body: _children[_currentIndex],
+          body: PageView.builder(
+              itemBuilder: (context, index) {
+                return _children[_currentIndex];
+              },
+              controller: _controller),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             showUnselectedLabels: true,
